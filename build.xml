@@ -1,0 +1,29 @@
+<project default="qtjambi-jruby.jar">
+	
+	<property environment="env"/>
+	<property name= "jruby.home" value= "${env.JRUBY_HOME}" />
+	
+	<target name="qtjambi-jruby.jar" description="Create a jar containing all the Qt Jambi JRuby classes.">
+		
+		<mkdir dir="out"/>
+		
+    <javac srcdir="." destdir="out">
+			<classpath>
+				<fileset dir="${jruby.home}/lib">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+			
+      <include name="com/trolltech/extensions/jruby/*.java"/>
+    </javac>
+    
+    <jar destfile="${jruby.home}/lib/qtjambi-jruby.jar">
+      <fileset dir="out"/>
+    </jar>
+
+    <delete dir="out"/>
+
+  </target>
+  
+</project>
+
