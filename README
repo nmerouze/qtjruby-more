@@ -19,13 +19,19 @@ If you don't have Git installed, you can download the tarball : http://github.co
 Install from jar
 ================
 
-* Download JRuby Complete 1.1
-* Download Qt Jambi 4.4 Preview for your platform (just for qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar)
-* Put these jar in the same directory than the Qt::JRuby jar
+Download JRuby Complete 1.1
+
+Download Qt Jambi 4.4 Preview for your platform (just for qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar)
+
+Put these jar in the same directory than the Qt::JRuby jar
 
 You can now begin to write your application. To launch it type :
 
 	java -jar /path/to/qtjruby-1.0.1.jar myapplication.rb
+
+You must add -XstartOnFirstThread option before -jar if you are under Mac OS X.
+
+You can now skip Install from sources and Examples sections and access directly yo First Steps to know how to create an Qt::JRuby application.
 
 Note : JRuby Complete 1.1 is not available yet so download JRuby Complete 1.1RC3 and rename it to jruby-complete-1.1.jar
 
@@ -51,7 +57,7 @@ Finally build Qt::JRuby jar :
 Examples
 ========
 
-You can run the examples with the following command :
+You can now run the examples with the following command :
 
 	jruby examples/example1.rb
 	

@@ -3,8 +3,8 @@ TODO
 
 - Add Containers and Dialogs to the DSL
 - Add support to other window options
-- Be able to add options to Layouts
+- Be able to add options to layouts
 - Be able to access to layouts into the DSL
 - Make it a gem
 - Write specs
-- Be Able to extend the DSL
+- Be able to extend the DSL
