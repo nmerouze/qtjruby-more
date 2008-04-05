@@ -1,3 +1,2 @@
-com/**/*.class
-lib/*.jar
+build/*
 .DS_Store

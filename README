@@ -27,9 +27,9 @@ Update PATH with JRUBY_HOME/bin :
 
 Download Qt Jambi. Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into JRUBY_HOME/lib folder.
 
-Finally build Qt::JRuby jar (the jar only contains Java classes for now) :
+Finally build Qt::JRuby jar :
 
-	ant
+	jruby -S rake build:qtjruby
 
 Examples
 ========
@@ -45,7 +45,6 @@ First Steps
 
 You must require "qt" to use it in your application :
 
-	$:.unshift '/path/to/qtjruby/lib'
 	require 'qt'
 
 Then you can create your application :

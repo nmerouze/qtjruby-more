@@ -1,5 +1,4 @@
 # http://doc.trolltech.com/qtjambi-4.4.0_01/doc/html/com/trolltech/qt/qtjambi-signalsandslots.html
-$:.unshift File.join(File.dirname(__FILE__), '../lib')
 require 'qt'
 
 class Counter

@@ -5,9 +5,7 @@
 	
 	<target name="qtjruby.jar" description="Create a jar containing Qt::JRuby.">
 		
-		<mkdir dir="out"/>
-		
-    <javac srcdir="." destdir="out">
+    <javac srcdir="." destdir="build">
 			<classpath>
 				<fileset dir="${jruby.home}/lib">
 					<include name="*.jar"/>
@@ -16,12 +14,16 @@
 			
       <include name="org/qtjruby/qtjambi/jruby/*.java"/>
     </javac>
-    
-    <jar destfile="${jruby.home}/lib/qtjruby.jar">
-      <fileset dir="out"/>
-    </jar>
 
-    <delete dir="out"/>
+    <jar destfile="${jruby.home}/lib/qtjruby.jar">
+      <fileset dir="build"/>
+			<fileset dir="lib" />
+			
+			<manifest>
+				<attribute name="Class-Path" value="jruby-complete-1.1.jar qtjambi-4.4.0_01.jar qtjambi-macosx-gcc-4.4.0_01.jar qtjambi-linux32-gcc-4.4.0_01.jar qtjambi-win32-msvc2005-4.4.0_01.jar"/>
+	      <attribute name="Main-Class" value="org.qtjruby.main"/>
+	    </manifest>
+    </jar>
 
   </target>
   
