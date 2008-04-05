@@ -1,4 +1,4 @@
-package com.trolltech.extensions.jruby;
+package org.qtjruby.qtjambi.jruby;
 
 import org.jruby.*;
 import org.jruby.runtime.*;

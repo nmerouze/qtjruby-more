@@ -3,12 +3,12 @@ Qt JRuby
 
 When the most powerful GUI toolkit meets the most flexible language to create a wonderful DSL to build cross-platform applications easily.
 
-Qt JRuby is a kick ass GUI toolkit in JRuby based on Qt Jambi. 
+Qt::JRuby is a kick ass GUI toolkit in JRuby based on Qt Jambi. 
 
 Download
 ========
 
-You'll need Git to download Qt JRuby source :
+You'll need Git to download Qt::JRuby sources :
 
 	git clone git://github.com/nmerouze/qtjruby.git
 
@@ -27,11 +27,7 @@ Update PATH with JRUBY_HOME/bin :
 
 Download Qt Jambi. Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into JRUBY_HOME/lib folder.
 
-Finally build Qt Jambi JRuby Extensions :
-
-	jruby -S rake jarify:ext
-
-It's just an alias for ant, so you can type :
+Finally build Qt::JRuby jar (the jar only contains Java classes for now) :
 
 	ant
 
@@ -80,20 +76,20 @@ Coming soon...
 Compatibility
 =============
 
-Qt JRuby has been tested on JRuby 1.1RC3 and Qt Jambi 4.4 Preview but may run with other versions.
+Qt::JRuby has been tested on JRuby 1.1 and Qt Jambi 4.4 Preview but may run with other versions.
 
 Thanks
 ======
 
-Qt Jambi JRuby Extensions are inspired by Qt Jambi Jython project.
+Qt Jambi Jython brings the solution to the Signals problems.
 
 The DSL is largely inspired by Shoes which is a great GUI toolkit in Ruby.
 
 Links
 =====
 
-Qt JRuby : http://qtjruby.org
-Qt JRuby sources : http://github.com/nmerouze/qtjruby
+Qt::JRuby : http://qtjruby.org
+Qt::JRuby sources : http://github.com/nmerouze/qtjruby
 JRuby : http://jruby.codehaus.org/
 Qt Jambi 4.4 Preview : http://trolltech.com/developer/downloads/qt/qtjambi44-preview-download
 Qt Jambi Jython : http://labs.trolltech.com/page/Projects/QtJambi/jython

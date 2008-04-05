@@ -1,6 +1,6 @@
 module Qt
   
-  import 'com.trolltech.extensions.jruby.Signals'
+  import 'org.qtjruby.qtjambi.jruby.Signals'
 
   com.trolltech.qt.core.Qt.constants.each do |const_name|
     const_set(const_name, com.trolltech.qt.core.Qt.const_get(const_name))
@@ -9,7 +9,7 @@ module Qt
   class << self
     
     def signal(nb = 0)
-      Java::JavaClass.for_name("com.trolltech.extensions.jruby.Signal#{nb}").ruby_class.new
+      Java::JavaClass.for_name("org.qtjruby.qtjambi.jruby.Signal#{nb}").ruby_class.new
     end
     
     def connect(signal, slot, &block)
