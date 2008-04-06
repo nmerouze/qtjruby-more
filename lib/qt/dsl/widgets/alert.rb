@@ -2,7 +2,8 @@ module Qt
   module Dsl
     module Widgets
       def alert(text, title = 'Information')
-        Qt::MessageBox.information(@window, title, text)
+        dialog = Qt::MessageBox.information(@window, title, text)
+        yield if dialog == Qt::MessageBox::StandardButton::Ok && block_given?
       end
     end
   end

@@ -1,6 +1,6 @@
 module Qt
   class Base
-    include Qt::Dsl::Application::Window
+    include Qt::Dsl::Layouts
     include Qt::Dsl::Objects
     include Qt::Dsl::Widgets
     
@@ -24,6 +24,18 @@ module Qt
           @window.fixed_size = Qt::Size.send :new, *options[:size]
         else
           @window.send :resize, *options[:size]
+        end
+      end
+    end
+    
+    def has(method, widget, &block)
+      (class << self; self; end).class_eval do
+        define_method method do |*args|
+          unless instance_variable_defined?("@#{method}")
+            instance_variable_set("@#{method}", send(widget, *args, &block))
+          end
+
+          instance_variable_get("@#{method}")
         end
       end
     end

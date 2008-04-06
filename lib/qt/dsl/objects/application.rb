@@ -1,6 +1,6 @@
 module Qt
   module Dsl
-    module Widgets
+    module Objects
       def application
         Qt::Application
       end

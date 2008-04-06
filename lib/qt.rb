@@ -6,5 +6,5 @@ require 'qt/dsl'
 require 'qt/base'
 
 module Qt
-  extend Dsl::Application::Qt
+  extend Dsl::Application
 end
