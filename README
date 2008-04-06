@@ -8,7 +8,7 @@ Qt::JRuby is a kick ass GUI toolkit in JRuby based on Qt Jambi.
 Download
 ========
 
-You can grab the jar here : http://qtjruby.googlecode.com/files/qtjruby-1.0.1.jar
+You can grab the jar here : http://code.google.com/p/qtjruby/downloads/list
 
 To install Qt::JRuby from sources you'll need Git to download them :
 
@@ -27,7 +27,7 @@ Put these jar in the same directory than the Qt::JRuby jar
 
 You can now begin to write your application. To launch it type :
 
-	java -jar /path/to/qtjruby-1.0.1.jar myapplication.rb
+	java -jar /path/to/qtjruby-$VERSION.jar myapplication.rb
 
 You must add -XstartOnFirstThread option before -jar if you are under Mac OS X.
 
