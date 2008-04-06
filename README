@@ -33,9 +33,7 @@ You must add -XstartOnFirstThread option before -jar if you are under Mac OS X.
 
 You can now skip Install from sources and Examples sections and access directly yo First Steps to know how to create an Qt::JRuby application.
 
-Note : JRuby Complete 1.1 is not available yet so download JRuby Complete 1.1RC3 and rename it to jruby-complete-1.1.jar
-
-Note 2 : Links are at the bottom of the file.
+Note : Links are at the bottom of the file.
 
 Install from sources
 ====================
@@ -45,7 +43,7 @@ Download and install JRuby. Then set JRUBY_HOME :
 	export JRUBY_HOME=/path/to/jruby
 	
 Update PATH with JRUBY_HOME/bin :
-
+	
 	export PATH=$JRUBY_HOME/bin:$PATH
 
 Download Qt Jambi. Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into JRUBY_HOME/lib folder.

@@ -1,3 +1,5 @@
+Dir.glob(File.dirname(__FILE__) + '/mapper/ext/*.rb').each { |ext| require ext }
+
 module Qt
   
   import 'org.qtjruby.qtjambi.jruby.Signals'
@@ -17,6 +19,10 @@ module Qt
       Qt::Signals.connect(signal, slot, b)
     end
     
+    # def event(event, &block)
+    #   Qt.connect(event, , &block)
+    # end
+    
     def class_name(name)
       ['.gui', '.core', '.webkit', '', '.phonon', '.svg', '.opengl'].each do |path|
         begin
@@ -32,7 +38,7 @@ module Qt
 
       klass.class_eval do
         @@class_name = Qt.class_name(name)
-        include Qt::Ext.const_get(name) if Qt::Ext.const_defined?(name)
+        include Qt::Mapper::Ext.const_get(name) if Qt::Mapper::Ext.const_defined?(name)
         
         def initialize(*args)
           super(*args)

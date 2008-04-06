@@ -1,7 +1,5 @@
 ISSUES
 ======
 
-- clicked signal on Qt::PushButton doesn't work properly
-- value_changed signal on Qt::Slider doesn't work properly
 - Qt::WebView doesn't display images
 - Qt::WebView doesn't work on Windows

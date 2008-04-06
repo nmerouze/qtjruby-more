@@ -1,5 +1,3 @@
-Dir.glob(File.dirname(__FILE__) + "/ext/*.rb").each { |ext| require ext }
-
 module Qt
 
   @@windows = {}
@@ -83,6 +81,14 @@ module Qt
       @layouts.unshift Qt::HBoxLayout.new
       instance_eval(&block) if block_given?
       @layouts[1].add_layout(@layouts.shift)
+    end
+    
+    def information_dialog(text, title = 'Information')
+      Qt::MessageBox.information(@window, title, text)
+    end
+    
+    def tr(text)
+      @window.tr(text)
     end
     
     def lcd_number(*args, &block)

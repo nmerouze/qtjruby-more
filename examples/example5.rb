@@ -12,7 +12,7 @@ Qt.app do
       
       push_button "Quit" do |b|
         b.font = Qt::Font.new("Times", 18, Qt::Font::Weight::Bold.value)
-        b.pressed do # clicked doesn't work properly
+        b.clicked do
           application.exit
         end
       end
@@ -22,7 +22,9 @@ Qt.app do
       slider(Qt::Orientation::Horizontal) do |s|
         s.set_range 0, 99
         s.value = 0
-        # value_changed doesn't work properly
+        s.value_changed do |i|
+          lcd.display(i)
+        end
       end
       
     end

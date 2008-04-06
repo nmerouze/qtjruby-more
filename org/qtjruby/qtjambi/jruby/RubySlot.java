@@ -12,8 +12,7 @@ class RubySlot {
     }
 		
     private RubyObject wrap(Object x) {
-			Ruby runtime = Ruby.newInstance();
-			return (RubyObject)JavaEmbedUtils.javaToRuby(runtime, x);
+			return JavaObject.wrap(slot.getRuntime(), x);
 		}
 		
 		public void execute_0() {
