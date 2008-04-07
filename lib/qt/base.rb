@@ -14,7 +14,7 @@ module Qt
     end
 
     def options(options = {})
-      @window.layout.margin = options[:margin] ? options[:margin] : 0
+      @window.layout.margin = options[:margin] if options[:margin]
       @window.window_title = options[:title] if options[:title]
       
       if options[:size]
@@ -24,8 +24,6 @@ module Qt
           @window.send :resize, *options[:size]
         end
       end
-      
-      # TODO: Put the default layout in the options
     end
     
     def has(method, widget, &block)

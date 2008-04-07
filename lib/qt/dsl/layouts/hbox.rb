@@ -2,7 +2,10 @@ module Qt
   module Dsl
     module Layouts
       def hbox(options = {}, &block)
-        add_layout Qt::HBoxLayout.new, &block
+        layout = Qt::HBoxLayout.new
+        layout.margin = options[:margin] if options[:margin]
+        
+        add_layout layout, &block
       end
     end
   end

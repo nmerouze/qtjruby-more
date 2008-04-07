@@ -2,7 +2,10 @@ module Qt
   module Dsl
     module Layouts
       def vbox(options = {}, &block)
-        add_layout Qt::VBoxLayout.new, &block
+        layout = Qt::VBoxLayout.new
+        layout.margin = options[:margin] if options[:margin]
+        
+        add_layout layout, &block
       end
     end
   end

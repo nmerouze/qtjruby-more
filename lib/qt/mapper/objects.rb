@@ -10,6 +10,7 @@ module Qt
             next
           end
         end
+        puts "Qt::#{name} not found."
       end
 
       def const_missing(name)
