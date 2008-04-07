@@ -5,6 +5,4 @@ TODO
 - Add support to other window options
 - Be able to add options to layouts
 - Be able to access to layouts into the DSL
-- Make it a gem
 - Write specs
-- Be able to extend the DSL

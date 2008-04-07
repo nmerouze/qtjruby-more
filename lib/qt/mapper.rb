@@ -4,6 +4,7 @@ require 'qt/mapper/objects'
 require 'qt/mapper/ext/web_view'
 
 module Qt
+  
   extend Mapper::ClassMethods
 
   com.trolltech.qt.core.Qt.constants.each do |const_name|

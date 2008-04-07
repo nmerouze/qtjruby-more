@@ -41,14 +41,14 @@ module Qt
     end
   
     def method_missing(sym, *args, &block)
-      (class << self; self; end).class_eval do
-        define_method sym do |*args|
-          widget = Qt.const_get(sym.to_s.camelize).send :new, *args
+      (class << self; self; end).class_eval %{
+        def #{sym}(*args, &block)
+          widget = Qt::#{sym.to_s.camelize}.new(*args, &block)
           @layouts.first.add_widget(widget)
           block.call(widget) if block_given?
           return widget
         end
-      end
+      }
       
       send(sym, *args, &block)
     end
