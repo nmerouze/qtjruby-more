@@ -50,6 +50,8 @@ module Qt
     
     protected
     
+      # TODO: Convert these methods to a generic tree Builder
+    
       def add_widget(widget)
         @layouts.first.add_widget(widget)
         yield widget if block_given?
@@ -59,10 +61,23 @@ module Qt
       def add_layout(layout)
         @layouts = [] if @layouts.nil?
         @layouts.unshift layout
-        yield if block_given?
+        yield layout if block_given?
         return layout if @layouts.length == 1
         
         @layouts[1].add_layout(@layouts.shift)
+      end
+      
+      def add_menu(menu)
+        @menus = [] if @menus.nil?
+        @menus.unshift menu
+        yield menu if block_given?
+        return menu if @menus.length == 1
+        
+        if menu.is_a? Qt::Menu
+          @menus[1].add_menu(@menus.shift)
+        elsif menu.is_a? Qt::Action
+          @menus[1].add_action(@menus.shift)
+        end
       end
     
   end

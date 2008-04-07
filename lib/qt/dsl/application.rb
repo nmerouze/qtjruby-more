@@ -14,10 +14,6 @@ module Qt
         Qt::Application.new(ARGV.to_java(:string)) unless Qt::Application.instance
         @@windows[sym] = Qt::Base.new(widget, &block).window
       end
-      
-      # def main_window(sym, &block)
-      #   Qt.window(sym, Qt::MainWindow, &block)
-      # end
 
       def open(sym)
         @@windows[sym].show

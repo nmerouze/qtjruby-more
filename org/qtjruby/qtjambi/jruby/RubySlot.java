@@ -12,7 +12,7 @@ class RubySlot {
     }
 		
     private RubyObject wrap(Object x) {
-			return JavaObject.wrap(slot.getRuntime(), x);
+			return (RubyObject)JavaEmbedUtils.javaToRuby(slot.getRuntime(), x);
 		}
 		
 		public void execute_0() {
