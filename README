@@ -1,9 +1,7 @@
-Qt JRuby
-========
+Qt::JRuby
+=========
 
-When the most powerful GUI toolkit meets the most flexible language to create a wonderful DSL to build cross-platform applications easily.
-
-Qt::JRuby is a kick ass GUI toolkit in JRuby based on Qt Jambi. 
+Lightweight framework to build GUI applications with the power of Qt and the flexibility of Ruby.
 
 Download
 ========

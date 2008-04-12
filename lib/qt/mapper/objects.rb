@@ -27,7 +27,7 @@ module Qt
 
             Java::JavaClass.for_name(@@class_name).fields.each do |field|
               if field.type.to_s =~ /QSignalEmitter/
-                (class << self; self; end).class_eval %{
+                metaclass.class_eval %{
                   def #{field.name}(*args, &block)
                     Qt.connect(@source.#{field.name}, self.method('slot'), &block)
                   end

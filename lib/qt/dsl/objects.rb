@@ -4,6 +4,14 @@ module Qt
       def action(title = nil, &block)
         add_menu Qt::Action.new(title, @window), &block
       end
+      
+      def application
+        Qt::Application
+      end
+      
+      def tr(text)
+        @window.tr(text)
+      end
     end
   end
 end

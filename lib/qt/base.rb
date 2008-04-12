@@ -7,10 +7,10 @@ module Qt
     attr_accessor :window
 
     def initialize(widget, &block)
-      @window = Qt::Widget.new
-      @window.layout = add_layout Qt::VBoxLayout.new
-      
+      @window = build(:widget, Qt::Widget.new)
+      @window.layout = build(:layout, Qt::VBoxLayout.new)
       instance_eval(&block) if block_given?
+      @window.run
     end
 
     def options(options = {})
@@ -21,63 +21,44 @@ module Qt
         if options[:fixed]
           @window.fixed_size = Qt::Size.send :new, *options[:size]
         else
-          @window.send :resize, *options[:size]
+          @window.resize(*options[:size])
         end
       end
     end
     
-    def has(method, widget, &block)
-      (class << self; self; end).class_eval do
-        define_method method do |*args|
-          unless instance_variable_defined?("@#{method}")
-            instance_variable_set("@#{method}", send(widget, *args, &block))
-          end
-
-          instance_variable_get("@#{method}")
-        end
-      end
-    end
-  
-    def method_missing(sym, *args, &block)
-      (class << self; self; end).class_eval %{
-        def #{sym}(*args, &block)
-          add_widget Qt::#{sym.to_s.camelize}.new(*args), &block
+    def has(method_name, widget, options = {}, &b1)
+      inst_var = "@#{method_name}"
+      args = options[:args].is_a?(Array) ? options[:args] : []
+      instance_variable_set(inst_var, [method(widget), args, b1]) unless instance_variable_defined?(inst_var)
+    
+      metaclass.class_eval %{
+        def #{method_name}(&b2)
+          #{inst_var}[0].call(*#{inst_var}[1], &#{inst_var}[2])
+          #{inst_var}.add_block(&b2) if block_given?
+          #{inst_var}
         end
       }
-      
-      send(sym, *args, &block)
+    end
+    
+    def build(type, object, &block)
+      case type
+      when :widget
+        Qt::Builder::Widget.new(object, &block)
+      when :layout
+        Qt::Builder::Layout.new(object, &block)
+      end
     end
     
     protected
-    
-      # TODO: Convert these methods to a generic tree Builder
-    
-      def add_widget(widget)
-        @layouts.first.add_widget(widget)
-        yield widget if block_given?
-        widget
-      end
       
-      def add_layout(layout)
-        @layouts = [] if @layouts.nil?
-        @layouts.unshift layout
-        yield layout if block_given?
-        return layout if @layouts.length == 1
-        
-        @layouts[1].add_layout(@layouts.shift)
-      end
+      def method_missing(sym, *args, &block)
+        metaclass.class_eval %{
+          def #{sym}(*args, &block)
+            build(:widget, Qt::#{sym.to_s.camelize}.new(*args), &block)
+          end
+        }
       
-      def add_menu(menu)
-        @menus = [] if @menus.nil?
-        @menus.unshift menu
-        yield menu if block_given?
-        return menu if @menus.length == 1
-        
-        if menu.is_a? Qt::Menu
-          @menus[1].add_menu(@menus.shift)
-        elsif menu.is_a? Qt::Action
-          @menus[1].add_action(@menus.shift)
-        end
+        send(sym, *args, &block)
       end
     
   end
