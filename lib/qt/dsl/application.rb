@@ -10,9 +10,9 @@ module Qt
         Qt::Application.exec
       end
 
-      def window(sym, widget = Qt::Widget, &block)
+      def window(sym, &block)
         Qt::Application.new(ARGV.to_java(:string)) unless Qt::Application.instance
-        @@windows[sym] = Qt::Base.new(widget, &block).window
+        @@windows[sym] = Qt::Base.new(&block).window
       end
 
       def open(sym)

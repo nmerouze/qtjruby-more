@@ -20,7 +20,7 @@ module Qt
       def run
         @block.call(@source)
         @layout.run
-        @menu_bar.run
+        @menu_bar.run unless @menu_bar.nil?
       end
       
       protected

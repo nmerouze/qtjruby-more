@@ -4,7 +4,7 @@ module Qt
     include Qt::Dsl::Objects
     include Qt::Dsl::Widgets
     
-    def initialize(widget, &block)
+    def initialize(&block)
       @window = build :main_window, Qt::Widget.new do
         @window.layout = build :layout, Qt::VBoxLayout.new do
           instance_eval(&block) if block_given?
@@ -20,14 +20,14 @@ module Qt
     alias :w :window
 
     def options(options = {})
-      @window.layout.margin = options[:margin] if options[:margin]
-      @window.window_title = options[:title] if options[:title]
+      window.layout.margin = options[:margin] if options[:margin]
+      window.window_title = options[:title] if options[:title]
       
       if options[:size]
         if options[:fixed]
-          @window.fixed_size = Qt::Size.send :new, *options[:size]
+          window.fixed_size = Qt::Size.send :new, *options[:size]
         else
-          @window.resize(*options[:size])
+          window.resize(*options[:size])
         end
       end
     end
@@ -53,16 +53,15 @@ module Qt
     end
     
     protected
-      
+
       def method_missing(sym, *args, &block)
         metaclass.class_eval %{
           def #{sym}(*args, &block)
-            build(:widget, Qt::#{sym.to_s.camelize}.new(*args), &block)
+            build :widget, Qt::#{sym.to_s.camelize}.new(*args), &block
           end
         }
       
         send(sym, *args, &block)
       end
-    
   end
 end
