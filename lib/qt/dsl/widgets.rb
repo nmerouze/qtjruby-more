@@ -2,12 +2,12 @@ module Qt
   module Dsl
     module Widgets
       def alert(text = nil, title = nil)
-        dialog = Qt::MessageBox.information(@window.source, title, text)
+        dialog = Qt::MessageBox.information(window, title, text)
         yield if dialog == Qt::MessageBox::StandardButton::Ok && block_given?
       end
       
       def input_dialog(label = nil, title = 'Input Dialog')
-        text = Qt::InputDialog.get_text(@window.source, title, label)
+        text = Qt::InputDialog.get_text(window, title, label)
         yield text if !text.nil? && !text.empty? && block_given?
       end
       
@@ -20,7 +20,7 @@ module Qt
       end
       
       def menu_bar(&block)
-        build :menu_bar, Qt::MenuBar.new(@window.source), &block
+        build :menu_bar, Qt::MenuBar.new(window), &block
       end
       
       def menu(title = nil, &block)

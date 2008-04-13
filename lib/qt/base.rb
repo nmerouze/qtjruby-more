@@ -4,8 +4,6 @@ module Qt
     include Qt::Dsl::Objects
     include Qt::Dsl::Widgets
     
-    attr_accessor :window
-
     def initialize(widget, &block)
       @window = build :main_window, Qt::Widget.new do
         @window.layout = build :layout, Qt::VBoxLayout.new do
@@ -15,6 +13,11 @@ module Qt
       
       @window.run
     end
+    
+    def window
+      @window.source
+    end
+    alias :w :window
 
     def options(options = {})
       @window.layout.margin = options[:margin] if options[:margin]

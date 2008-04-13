@@ -2,7 +2,7 @@ module Qt
   module Dsl
     module Objects
       def action(title = nil, &block)
-        build :menu, Qt::Action.new(title, @window.source), &block
+        build :menu, Qt::Action.new(title, window), &block
       end
       
       def application
@@ -10,7 +10,7 @@ module Qt
       end
       
       def tr(text)
-        @window.tr(text)
+        window.tr(text)
       end
     end
   end
