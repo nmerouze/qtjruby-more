@@ -1,41 +1,51 @@
 module Qt
   module Builder
-
     class Layout
-      attr :block
+      attr :blocks
       attr :children
-      attr_accessor :object
+      attr_reader :source
+      attr :parent
       
-      def initialize(object, &block)
-        @object = object
-        @block = block if block_given?
+      def initialize(source, &block)
+        @source = source
+        @blocks = []
+        add_block(&block) if block_given?
+        @parent = Qt::Builder.layout
         @children = []
-        Qt::Builder.current_layout = self
+
+        if @parent.nil?
+          Qt::Builder.root.layout = self
+        else
+          @parent.add_child(self)
+        end
+      end
+      
+      def add_block(&block)
+        @blocks << block
       end
       
       def add_child(child)
         @children << child
+        
+        if child.is_a? Qt::Builder::Layout
+          @source.add_layout(child.source)
+        else
+          @source.add_widget(child.source)
+        end
       end
       
       def run
-        @block.call(@object) unless @block.nil?
-        
-        @children.each do |child|
-          child.run
-          if child.is_a? Qt::Builder::Layout
-            @object.add_layout child.object
-          else
-            @object.add_widget child.object
-          end
-        end
+        Qt::Builder.layouts << self
+        @blocks.each { |b| b.call(@source) }
+        @children.each { |child| child.run }
+        Qt::Builder.layouts.pop
       end
       
       protected
       
         def method_missing(sym, *args, &block)
-          @object.send(sym, *args, &block)
+          @source.send(sym, *args, &block)
         end
     end
-
   end
 end

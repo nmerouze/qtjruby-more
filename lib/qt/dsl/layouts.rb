@@ -5,18 +5,14 @@ module Qt
         layout = Qt::HBoxLayout.new
         layout.margin = options[:margin] if options[:margin]
         
-        parent = Qt::Builder.current_layout
-        parent.add_child(build(:layout, layout, &block))
-        Qt::Builder.current_layout
+        build :layout, layout, &block
       end
       
       def vbox(options = {}, &block)
         layout = Qt::VBoxLayout.new
         layout.margin = options[:margin] if options[:margin]
         
-        parent = Qt::Builder.current_layout
-        parent.add_child(build(:layout, layout, &block))
-        Qt::Builder.current_layout
+        build :layout, layout, &block
       end
     end
   end

@@ -2,7 +2,7 @@ module Qt
   module Dsl
     module Objects
       def action(title = nil, &block)
-        add_menu Qt::Action.new(title, @window), &block
+        build :menu, Qt::Action.new(title, @window.source), &block
       end
       
       def application

@@ -1,24 +1,26 @@
 module Qt
   module Builder
-    class Widget
-      attr :blocks
+    class MainWindow
+      attr :block
+      attr_reader :layout
+      attr_accessor :menu_bar
       attr_reader :source
       
       def initialize(source, &block)
         @source = source
-        @parent = Qt::Builder.layout
-
-        @blocks = []
-        add_block(&block) if block_given?
-        @parent.add_child(self) unless @parent.nil?
+        @block = block if block_given?
+        Qt::Builder.root = self
       end
       
-      def add_block(&block)
-        @blocks << block
+      def layout=(layout)
+        @layout = layout
+        @source.layout = layout.source
       end
       
       def run
-        @blocks.each { |b| b.call(@source) }
+        @block.call(@source)
+        @layout.run
+        @menu_bar.run
       end
       
       protected

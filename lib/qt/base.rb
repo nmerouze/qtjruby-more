@@ -7,9 +7,12 @@ module Qt
     attr_accessor :window
 
     def initialize(widget, &block)
-      @window = build(:widget, Qt::Widget.new)
-      @window.layout = build(:layout, Qt::VBoxLayout.new)
-      instance_eval(&block) if block_given?
+      @window = build :main_window, Qt::Widget.new do
+        @window.layout = build :layout, Qt::VBoxLayout.new do
+          instance_eval(&block) if block_given?
+        end
+      end
+      
       @window.run
     end
 
@@ -33,20 +36,17 @@ module Qt
     
       metaclass.class_eval %{
         def #{method_name}(&b2)
-          #{inst_var}[0].call(*#{inst_var}[1], &#{inst_var}[2])
-          #{inst_var}.add_block(&b2) if block_given?
+          if #{inst_var}.is_a? Array
+            #{inst_var} = #{inst_var}[0].call(*#{inst_var}[1], &#{inst_var}[2])
+            #{inst_var}.add_block(&b2) if block_given?
+          end
           #{inst_var}
         end
       }
     end
     
     def build(type, object, &block)
-      case type
-      when :widget
-        Qt::Builder::Widget.new(object, &block)
-      when :layout
-        Qt::Builder::Layout.new(object, &block)
-      end
+      Qt::Builder.const_get(type.to_s.camelize).new(object, &block)
     end
     
     protected

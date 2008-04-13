@@ -2,29 +2,29 @@ module Qt
   module Dsl
     module Widgets
       def alert(text = nil, title = nil)
-        dialog = Qt::MessageBox.information(@window, title, text)
+        dialog = Qt::MessageBox.information(@window.source, title, text)
         yield if dialog == Qt::MessageBox::StandardButton::Ok && block_given?
       end
       
       def input_dialog(label = nil, title = 'Input Dialog')
-        text = Qt::InputDialog.get_text(@window, title, label)
+        text = Qt::InputDialog.get_text(@window.source, title, label)
         yield text if !text.nil? && !text.empty? && block_given?
       end
       
       def lcd_number(*args, &block)
-        Qt::Builder::Widget.new(Qt::LCDNumber.new(*args), &block)
+        build :widget, Qt::LCDNumber.new(*args), &block
       end
       
       def list_box(&block)
-        Qt::Builder::Widget.new(Qt::ListWidget.new, &block)
+        build :widget, Qt::ListWidget.new, &block
       end
       
       def menu_bar(&block)
-        Qt::Builder::MenuBar.new(Qt::MenuBar.new(@window), &block)
+        build :menu_bar, Qt::MenuBar.new(@window.source), &block
       end
       
       def menu(title = nil, &block)
-        Qt::Builder::Menu.new(Qt::Menu.new(title), &block)
+        build :menu, Qt::Menu.new(title), &block
       end
       
       def push_button(title = nil, icon = nil, &block)
@@ -33,7 +33,7 @@ module Qt
       end
       
       def text_edit(&block)
-        Qt::Builder::Widget.new(Qt::TextEdit.new, &block)
+        build :widget, Qt::TextEdit.new, &block
       end
     end
   end
