@@ -6,17 +6,15 @@ module Qt
     
     def initialize(&block)
       @window = build :main_window, Qt::Widget.new do
-        @window.layout = build :layout, Qt::VBoxLayout.new do
+        build :layout, Qt::VBoxLayout.new do
           instance_eval(&block) if block_given?
         end
       end
       
-      @window.run
+      Qt::Builder.root.run
     end
     
-    def window
-      @window.source
-    end
+    attr_reader :window
     alias :w :window
 
     def options(options = {})
@@ -49,7 +47,7 @@ module Qt
     end
     
     def build(type, object, &block)
-      Qt::Builder.const_get(type.to_s.camelize).new(object, &block)
+      Qt::Builder.const_get(type.to_s.camelize).new(object, &block).source
     end
     
     protected

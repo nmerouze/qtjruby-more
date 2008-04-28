@@ -1,3 +1,6 @@
+require 'iconv'
+require 'cgi'
+
 class String
   def camelize(first_letter = :upper)
     case first_letter
@@ -24,5 +27,17 @@ class String
       gsub(/([a-z\d])([A-Z])/,'\1_\2').
       tr("-", "_").
       downcase
+  end
+  
+  def to_utf8
+    Iconv.conv('utf-8', 'iso-8859-1', self)
+  end
+  
+  def encode_html
+    CGI.escapeHTML(self)
+  end
+  
+  def decode_html
+    CGI.unescapeHTML(self)
   end
 end

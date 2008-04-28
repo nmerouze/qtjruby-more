@@ -3,6 +3,8 @@ Qt::JRuby
 
 Lightweight framework to build GUI applications with the power of Qt and the flexibility of Ruby.
 
+**WARNING** : There's must be some changes to the DSL in a near future so check the commits.
+
 Download
 ========
 

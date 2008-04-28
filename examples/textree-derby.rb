@@ -1,4 +1,4 @@
-# gem install -y activerecord-jdbcderby-adapter
+# jruby -S gem install -y activerecord-jdbcderby-adapter
 require 'qt'
 
 require 'rubygems'
