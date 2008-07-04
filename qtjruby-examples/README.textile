@@ -1,0 +1,9 @@
+h1. Qt::JRuby Examples
+
+Few examples to see what you can code with Qt::JRuby and its DSL.
+
+h2. License and support
+
+(C) 2008 Nicolas Mérouze, under an MIT licence. http://www.opensource.org/licenses/mit-license.php
+
+Please leave any bugs or feedback at nicolas.merouze [at] gmail [dot] com

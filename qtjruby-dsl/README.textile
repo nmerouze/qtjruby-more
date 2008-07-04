@@ -1,0 +1,35 @@
+h1. Qt::JRuby DSL
+
+*WARNING* : Qt::JRuby DSL is under active development. Everything can change.
+
+h2. Description
+
+Give a little sugar to Qt::JRuby.
+
+h2. Requirements
+
+* Qt::JRuby Core 0.2+
+
+h2. Installation
+
+Download Qt Jambi if you havn't do it yet. Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into JRUBY_HOME/lib folder. Then :
+
+<pre><code>git clone git://github.com/nmerouze/qtjruby.git
+cd /path/to/qtjruby/qtjruby-dsl
+jruby -S rake</code></pre>
+
+h2. Example
+
+<pre><code>require 'qtjruby-dsl'
+
+Qt.app do
+	window :id => 'main' do
+		button('Click Me!').clicked { alert 'Clicked!' }
+	end
+end</code></pre>
+
+h2. License and support
+
+(C) 2008 Nicolas Mérouze, under an MIT licence. http://www.opensource.org/licenses/mit-license.php
+
+Please leave any bugs or feedback at nicolas.merouze [at] gmail [dot] com
