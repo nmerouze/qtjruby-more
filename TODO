@@ -1,8 +1,1 @@
-TODO
-====
-
-- Add Containers and Dialogs to the DSL
-- Add support to other window options
-- Be able to add options to layouts
-- Be able to access to layouts into the DSL (current, parent, children...)
-- Write specs
+* Custom signals are broken

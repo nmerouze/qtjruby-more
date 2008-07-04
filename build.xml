@@ -1,49 +1,15 @@
-<project default="qtjruby">
-	
-	<property environment="env"/>
-	<property name= "jruby.home" value= "${env.JRUBY_HOME}" />
-	
-	<target name="qtjruby" description="Create a jar containing Qt::JRuby.">
-		
+<project default="qtjruby-core">
+  
+  <target name="qtjruby-core" description="Create a jar containing Qt::JRuby core.">
+    
     <javac srcdir="." destdir="build">
-			<classpath>
-				<fileset dir="${jruby.home}/lib">
-					<include name="*.jar"/>
-				</fileset>
-			</classpath>
-			
-      <include name="org/qtjruby/qtjambi/jruby/*.java"/>
+      <include name="org/qtjruby/*.java"/>
     </javac>
-
-    <jar destfile="${jruby.home}/lib/qtjruby.jar">
-      <fileset dir="build"/>
-			<fileset dir="lib" />
-			
-			<manifest>
-				<attribute name="Class-Path" value="jruby-complete-1.1.jar qtjambi-4.4.0_01.jar qtjambi-macosx-gcc-4.4.0_01.jar qtjambi-linux32-gcc-4.4.0_01.jar qtjambi-win32-msvc2005-4.4.0_01.jar"/>
-	      <attribute name="Main-Class" value="org.qtjruby.main"/>
-	    </manifest>
-    </jar>
-
-  </target>
-
-	<target name="java" description="Create a jar containing Qt::JRuby Java classes only.">
-		
-    <javac srcdir="." destdir="build">
-			<classpath>
-				<fileset dir="${jruby.home}/lib">
-					<include name="*.jar"/>
-				</fileset>
-			</classpath>
-			
-      <include name="org/qtjruby/qtjambi/jruby/*.java"/>
-    </javac>
-
-    <jar destfile="${jruby.home}/lib/qtjruby-java-classes.jar">
+ 
+    <jar destfile="lib/qtjruby-core.jar">
       <fileset dir="build"/>
     </jar>
-
+ 
   </target>
   
 </project>
-

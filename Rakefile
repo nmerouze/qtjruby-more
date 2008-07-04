@@ -1,29 +1,41 @@
 require 'rake'
-require 'rake/packagetask'
-require 'rake/classic_namespace'
-require 'rbconfig'
+require 'rake/gempackagetask'
 
-desc "Run a Ruby file with JRuby"
-task :start do
-  file_name = ARGV.pop
-  option = ENV_JAVA['os.name'] == 'Mac OS X' ? '-J-XstartOnFirstThread' : nil
+windows = (ENV_JAVA['os.name'] =~ /Windows/) rescue nil
+SUDO = windows ? "" : "sudo"
 
-  if File.exist? file_name
-    sh "jruby #{option} #{file_name}"
-  else
-    puts 'File not found.'
-  end
+NAME = 'qtjruby-core'
+
+require "lib/qtjruby-core/version"
+
+task :default => [:build, :install]
+
+spec = Gem::Specification.new do |s|
+  s.name         = NAME
+  s.version      = Qt::JRuby::VERSION
+  s.platform     = Gem::Platform::RUBY
+  s.author       = "Nicolas Mérouze"
+  s.email        = "nicolas.merouze@gmail.com"
+  s.homepage     = "http://www.qtjruby.org"
+  s.summary      = "Qt meets Java meets Ruby."
+  s.bindir       = "bin"
+  s.description  = s.summary
+  s.executables  = %w( qtjruby )
+  s.require_path = "lib"
+  s.files        = %w( LICENSE README.textile Rakefile TODO ) + Dir["{bin,lib}/**/*"]
+
+  # rdoc
+  s.has_rdoc         = false
 end
 
-namespace :build do
-  desc "Build Qt::JRuby jar"
-  task :qtjruby do
-    sh "jrubyc -t build -p org/qtjruby -d org/qtjruby org/qtjruby/main.rb"
-    sh "ant"
-  end
-  
-  desc "Build Qt::JRuby Java classes jar"
-  task :java do
-    sh "ant java"
-  end
+Rake::GemPackageTask.new(spec) do |package|
+  package.gem_spec = spec
+end
+
+task :build do
+  sh %{ant -lib #{ENV_JAVA['jruby.home']}/lib}
+end
+
+task :install => :package do
+  sh %{#{SUDO} #{ENV_JAVA['jruby.home']}/bin/jruby -S gem install pkg/#{NAME}-#{Qt::JRuby::VERSION}.gem --no-rdoc --no-ri}
 end

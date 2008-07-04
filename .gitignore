@@ -1,3 +1,5 @@
-main.rb
-build/**/*
 .DS_Store
+*.class
+*.jar
+pkg
+pkg/*
