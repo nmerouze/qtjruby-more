@@ -31,7 +31,7 @@ Finally build qtjruby-complete.jar:
 
 h2. Run
 
-<pre><code>java -jar ./jars/qtjruby-complete.jar myapp.rb</code></pre>
+<pre><code>java -jar ./jars/qtjruby-complete-0.2.0.jar myapp.rb</code></pre>
 
 Add <code>-XstartOnFirstThread</code> option if you're under Mac OS X.
 
