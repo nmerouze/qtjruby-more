@@ -10,7 +10,7 @@ task :compile do
 end
 
 task :jarify do
-  sh 'jar cfm ./jars/qtjruby-complete-0.2.0.jar manifest lib/rubygems.rb org/qtjruby/boot.class'
+  sh 'jar cfm ./jars/qtjruby-complete-0.2.0.jar manifest rubygems.rb org/qtjruby/boot.class'
 end
 
 task :run do
