@@ -23,7 +23,7 @@ Download jruby-complete.jar:
 
 Install Qt::JRuby core gem:
 
-<pre><code>jruby -S gem install ../qtjruby-core/pkg/qtjruby-core-0.2.0.gem -i gems</code></pre>
+<pre><code>jruby -S gem install nmerouze-qtjruby-core --source http://gems.github.com -i gems</code></pre>
 
 Finally build qtjruby-complete.jar:
 
