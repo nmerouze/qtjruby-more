@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Class-Path: ./jruby-complete-1.1.3.jar ./qtjambi-4.4.0_01.jar ./qtjambi-macosx-gcc-4.4.0_01.jar ./qtjambi-linux32-gcc-4.4.0_01.jar ./qtjambi-win32-msvc2005-4.4.0_01.jar
-Main-Class: org.qtjruby.boot

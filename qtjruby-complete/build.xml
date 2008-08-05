@@ -1,0 +1,30 @@
+<project default="qtjruby-complete">
+  
+  <target name="qtjruby-complete" description="Create a jar containing JRuby complete and Qt Jambi.">
+    
+    <taskdef name="jarjar" classname="com.tonicsystems.jarjar.JarJarTask" classpath="build_lib/jarjar-1.0rc7.jar"/>
+    
+    <jarjar destfile="jars/qtjruby-complete.jar">
+      <fileset dir=".">
+        <include name="rubygems.rb"/>
+      </fileset>
+      <fileset dir="org/qtjruby">
+        <include name="boot.class"/>
+      </fileset>
+      <zipfileset src="build_lib/jruby-complete-1.1.3.jar"/>
+      <zipfileset src="build_lib/qtjambi-4.4.0_01.jar"/>
+      
+      <!-- <zipfileset src="jars/qtjambi-linux32-gcc-4.4.0_01.jar"/> -->
+      <!-- <zipfileset src="jars/qtjambi-macosx-gcc-4.4.0_01.jar"/> -->
+      <!-- <zipfileset src="jars/qtjambi-win32-msvc2005-4.4.0_01.jar"/> -->
+      
+      <manifest>
+        <attribute name="Built-By" value="Nicolas Mérouze"/>
+        <attribute name="Class-Path" value="./qtjambi-macosx-gcc-4.4.0_01.jar ./qtjambi-linux32-gcc-4.4.0_01.jar ./qtjambi-win32-msvc2005-4.4.0_01.jar"/>
+        <attribute name="Main-Class" value="org.qtjruby.boot"/>
+      </manifest>
+    </jarjar>
+ 
+  </target>
+  
+</project>
