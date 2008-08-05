@@ -10,9 +10,9 @@ task :compile do
 end
 
 task :jarify do
-  sh 'jar cfm ./jars/qtjruby-complete.jar manifest .'
+  sh 'jar cfm qtjruby-complete-0.2.0.jar manifest .'
 end
 
 task :run do
-  sh "java #{macosx ? '-XstartOnFirstThread' : nil} -jar ./jars/qtjruby-complete.jar #{ARGV.pop}"
+  sh "java #{macosx ? '-XstartOnFirstThread' : nil} -jar qtjruby-complete-0.2.0.jar #{ARGV.pop}"
 end
