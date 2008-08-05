@@ -1,0 +1,3 @@
+gems/*
+jars/*
+org/qtjruby/*.class

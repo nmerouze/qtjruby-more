@@ -1,0 +1,18 @@
+require 'rake'
+
+macosx = (ENV_JAVA['os.name'] == 'Mac OS X') rescue nil
+
+task :all =>   [:compile, :jarify, :run]
+task :build => [:compile, :jarify]
+
+task :compile do
+  sh 'jruby -S jrubyc org/qtjruby/boot.rb'
+end
+
+task :jarify do
+  sh 'jar cfm ./jars/qtjruby-complete.jar manifest .'
+end
+
+task :run do
+  sh "java #{macosx ? '-XstartOnFirstThread' : nil} -jar ./jars/qtjruby-complete.jar #{ARGV.pop}"
+end

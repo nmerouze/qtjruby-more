@@ -1,0 +1,46 @@
+h1. Qt::JRuby Complete
+
+All-In-One package of Qt::JRuby.
+
+h2. Requirements
+
+* Java 1.5+
+* JRuby 1.1+
+
+h2. Installation
+
+Download Qt Jambi:
+
+* http://trolltech.com/developer/download/qtjambi-win32-gpl-4.4.0_01.zip
+* http://trolltech.com/developer/download/qtjambi-linux32-gpl-4.4.0_01.tar.gz
+* http://trolltech.com/developer/download/qtjambi-mac-gpl-4.4.0_01.tar.gz
+
+Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into jars/.
+
+Download jruby-complete.jar:
+
+* http://repository.codehaus.org/org/jruby/jruby-complete/1.1.3/jruby-complete-1.1.3.jar
+
+Install Qt::JRuby core gem:
+
+<pre><code>jruby -S gem install ../qtjruby-core/pkg/qtjruby-core-0.2.0.gem -i gems</code></pre>
+
+Finally build qtjruby-complete.jar:
+
+<pre><code>jruby -S rake build</code></pre>
+
+h2. Run
+
+<pre><code>java -jar ./jars/qtjruby-complete.jar myapp.rb</code></pre>
+
+Add <code>-XstartOnFirstThread</code> option if you're under Mac OS X.
+
+h2. Run without qtjruby-complete.jar
+
+<pre><code>java -jar ./jars/jruby-complete-1.1.3.jar ./org/qtjruby/boot.rb myapp.rb</code></pre>
+
+h2. License and support
+
+(C) 2008 Nicolas Mérouze, under an MIT licence. http://www.opensource.org/licenses/mit-license.php
+
+Please leave any bugs or feedback at nicolas.merouze [at] gmail [dot] com
