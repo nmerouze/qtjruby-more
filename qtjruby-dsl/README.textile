@@ -15,7 +15,7 @@ h2. Installation
 Download Qt Jambi if you havn't do it yet. Put qtjambi-$VERSION.jar and qtjambi-$PLATFORM-$VERSION.jar into JRUBY_HOME/lib folder. Then :
 
 <pre><code>git clone git://github.com/nmerouze/qtjruby-more.git
-cd /path/to/qtjruby-dsl
+cd /path/to/qtjruby-more/qtjruby-dsl
 jruby -S rake</code></pre>
 
 h2. Example
