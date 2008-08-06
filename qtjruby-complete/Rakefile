@@ -14,5 +14,5 @@ task :jarify do
 end
 
 task :run do
-  sh "java #{macosx ? '-XstartOnFirstThread' : nil} -jar ./jars/qtjruby-0.2.0.jar #{ARGV.pop}"
+  sh "java #{macosx ? '-XstartOnFirstThread' : nil} -jar ./jars/qtjruby-0.2.1.jar #{ARGV.pop}"
 end
