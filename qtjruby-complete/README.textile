@@ -23,15 +23,18 @@ Download jruby-complete.jar:
 
 Install Qt::JRuby core gem:
 
-<pre><code>jruby -S gem install nmerouze-qtjruby-core --source http://gems.github.com -i gems</code></pre>
+<pre><code>git clone git://github.com/nmerouze/qtjruby-core.git
+cd /path/to/qtjruby-core
+jruby -S rake install
+jruby -S gem unpack qtjruby-core --target gems</code></pre>
 
-Finally build qtjruby-0.2.1.jar:
+Finally build qtjruby-0.2.2.jar:
 
 <pre><code>jruby -S rake build</code></pre>
 
 h2. Run
 
-<pre><code>java -jar ./jars/qtjruby-0.2.1.jar myapp.rb</code></pre>
+<pre><code>java -jar ./jars/qtjruby-0.2.2.jar myapp.rb</code></pre>
 
 Add <code>-XstartOnFirstThread</code> option if you're under Mac OS X.
 

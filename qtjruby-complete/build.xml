@@ -2,7 +2,7 @@
   
   <target name="qtjruby" description="Create a jar containing librairies to boot a Qt::JRuby application.">
     
-    <jar destfile="jars/qtjruby-0.2.1.jar">
+    <jar destfile="jars/qtjruby-0.2.2.jar">
       <fileset dir=".">
         <include name="rubygems.rb"/>
         <include name="org/qtjruby/boot.class"/>
