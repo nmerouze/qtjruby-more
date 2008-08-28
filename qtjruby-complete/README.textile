@@ -27,9 +27,12 @@ Install Qt::JRuby core gem:
 git clone git://github.com/nmerouze/qtjruby-core.git
 cd /path/to/qtjruby-core
 jruby -S rake install
-jruby -S gem unpack english -- --target gems
-jruby -S gem unpack extlib -- --target gems
-jruby -S gem unpack qtjruby-core -- --target gems</code></pre>
+cd /path/to/qtjruby-complete
+mkdir gems
+cd gems
+jruby -S gem unpack english
+jruby -S gem unpack extlib
+jruby -S gem unpack qtjruby-core</code></pre>
 
 Finally build qtjruby-0.2.2.jar:
 
